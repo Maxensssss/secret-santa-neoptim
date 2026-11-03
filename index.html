@@ -330,6 +330,19 @@ h1,h2,h3,p{margin:0}
 .unlock__input{flex:1;min-width:0;height:46px;border:0;background:transparent;color:var(--fg);font:400 15.5px var(--sans);outline:none}
 .unlock__input::placeholder{color:var(--fg-40)}
 .unlock .btn{height:46px;padding:0 22px;font-size:14px}
+.unlock .linkish{display:block;margin:6px auto 0}
+.picker{margin-top:26px;width:min(640px,100%);display:grid;justify-items:center;gap:14px}
+.picker__names{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0;padding:0;list-style:none}
+.picker__names button{height:46px;padding:0 20px;border-radius:999px;border:1px solid hsl(var(--fg-hsl) / .16);background:hsl(var(--fg-hsl) / .07);color:var(--fg);
+  font:500 15px var(--sans);cursor:pointer;transition-property:border-color,background-color,transform;transition-duration:.15s}
+.picker__names button:hover{border-color:rgba(255,156,85,.7);background:rgba(236,103,7,.14)}
+.picker__names button:active{transform:scale(.96)}
+.picker__names button[disabled]{cursor:default;opacity:.4;text-decoration:line-through;text-decoration-color:rgba(255,156,85,.7)}
+.picker .results__actions{margin-top:0}
+.pick-state{font-size:13px;color:var(--fg-60);white-space:nowrap}
+.pick-state.is-done{color:#ff9c55}
+.result__name.is-spinning{opacity:.55;filter:blur(1.5px)}
+.is-spun .ch{animation-delay:calc(var(--i) * 45ms)}
 .unlock .btn[disabled]{opacity:.7}
 .unlock__msg{margin-top:10px;min-height:20px;font-size:13.5px;color:var(--fg-60)}
 .unlock__msg.is-warn{color:#ffb27a}
@@ -623,8 +636,8 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       <li data-public><a href="#tirage">Ton cadeau</a></li>
     </ul>
     <a class="btn btn--orange" href="#tirage" data-magnetic data-orga>Le tirage</a>
-    <a class="btn btn--orange" href="#demo" data-magnetic data-public data-nomine>Cadeau test</a>
-    <a class="btn btn--orange" href="#demo" data-magnetic data-public data-mine hidden>Mon cadeau</a>
+    <a class="btn btn--orange" href="#piocher" data-magnetic data-public data-nomine>Piocher</a>
+    <a class="btn btn--orange" href="#piocher" data-magnetic data-public data-mine hidden>Mon tirage</a>
   </nav>
 </header>
 
@@ -637,12 +650,12 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <span class="line"><span class="w" style="--i:2">Un</span> <span class="w" style="--i:3">cadeau.</span></span>
         <span class="line"><span class="w" style="--i:4">Un</span> <em class="w accent ember-text" style="--i:5">secret.</em></span>
       </h1>
-      <p class="hero__sub" data-in style="--d:.95s" data-orga>Toute l’équipe est déjà dans le chapeau&nbsp;: vérifie la liste, lance le tirage, puis envoie à chacun son lien.</p>
-      <p class="hero__sub" data-in style="--d:.95s" data-public>Le Secret Santa de <span data-bind="company">Neoptim</span> commence ici. Rien à remplir&nbsp;: tu recevras un lien personnel en privé pour découvrir qui tu vas gâter.</p>
+      <p class="hero__sub" data-in style="--d:.95s" data-orga>Toute l’équipe est déjà dans le chapeau&nbsp;: vérifie la liste, lance le tirage, puis envoie le lien du site à tout le monde.</p>
+      <p class="hero__sub" data-in style="--d:.95s" data-public>Le Secret Santa de <span data-bind="company">Neoptim</span> commence ici. Clique sur «&nbsp;Piocher&nbsp;», choisis ton prénom et découvre qui tu vas gâter.</p>
       <div class="ctas" data-in style="--d:1.08s">
         <a class="btn btn--orange" href="#tirage" data-magnetic data-orga>Lancer le tirage<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-        <a class="btn btn--orange" href="#demo" data-magnetic data-public data-mine hidden>Revoir mon cadeau<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-        <a class="btn btn--orange" href="#demo" data-magnetic data-public data-nomine>Ouvrir un cadeau test<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn--orange" href="#piocher" data-magnetic data-public data-mine hidden>Revoir mon tirage<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn--orange" href="#piocher" data-magnetic data-public data-nomine>Piocher mon nom<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
         <button class="btn btn--glass liquid-glass" type="button" data-cal="outlook" data-magnetic data-public><svg aria-hidden="true"><use href="#i-cal"/></svg>Ajouter à Outlook</button>
         <a class="btn btn--glass liquid-glass" href="#demo" data-magnetic data-orga><svg aria-hidden="true" style="width:16px;height:16px;color:#ff9c55"><use href="#i-flake"/></svg>Ouvrir un cadeau test</a>
       </div>
@@ -681,7 +694,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
             <circle pathLength="1" cx="33" cy="29.5" r="3.5"/>
             <path pathLength="1" d="M7 33h28a3.5 3.5 0 0 1 0 7H7a3.5 3.5 0 0 1 0-7z"/>
           </svg>
-          <div><span class="step__num">I</span><h3>Rien à remplir</h3><p>Toute l’équipe est déjà dans le chapeau. Pas d’inscription, pas de mot de passe&nbsp;: il suffit d’attendre son lien.</p></div>
+          <div><span class="step__num">I</span><h3>Rien à remplir</h3><p>Toute l’équipe est déjà dans le chapeau. Pas de compte, pas de mot de passe&nbsp;: tu choisis ton prénom et tu pioches.</p></div>
         </li>
         <li class="step" data-reveal style="--d:.15s">
           <svg class="step__icon" viewBox="0 0 48 48" aria-hidden="true">
@@ -695,7 +708,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
             <path pathLength="1" d="M9 22h30v18H9z"/><path pathLength="1" d="M7 16h34v6H7z"/><path pathLength="1" d="M24 16v24"/>
             <path pathLength="1" d="M24 16c-4-8-12-6-8-1 2 2 6 1 8 1 2 0 6 1 8-1 4-5-4-7-8 1"/>
           </svg>
-          <div><span class="step__num">III</span><h3>Chacun ouvre son cadeau</h3><p>Chacun reçoit son propre lien, en privé. Personne ne voit le tirage des autres.</p></div>
+          <div><span class="step__num">III</span><h3>Chacun pioche son nom</h3><p>Chacun pioche son nom depuis le site, une seule fois. Personne ne voit le tirage des autres.</p></div>
         </li>
       </ol>
     </div></div>
@@ -706,11 +719,11 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       <div class="tirage__intro">
         <p class="label" data-reveal>02 — Le tirage</p>
         <h2 class="h2" id="tirage-title" data-split>Prépare le <span class="accent">tirage</span>.</h2>
-        <p class="lede" data-reveal style="--d:.16s">Vérifie la liste, puis lance le tirage. Tout se passe dans ton navigateur.</p>
+        <p class="lede" data-reveal style="--d:.16s">Vérifie la liste, puis lance le tirage&nbsp;: il est mis en ligne, et chacun vient piocher son nom.</p>
         <ul class="facts" data-reveal style="--d:.24s">
           <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Toute l’équipe est déjà inscrite&nbsp;: retire les absents, ajoute un prénom si besoin.</li>
-          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Les noms tirés ne s’affichent jamais ici&nbsp;: chacun découvre le sien en ouvrant son lien.</li>
-          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Date, budget et message restent modifiables : il suffit alors de renvoyer les liens.</li>
+          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Tu ne vois jamais qui a qui&nbsp;: seulement qui a déjà pioché.</li>
+          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Date, budget et message partent en ligne avec le tirage.</li>
         </ul>
         <div class="orga-links"><button class="linkish linkish--left" type="button" id="orga-exit">Voir la page comme un collègue</button></div>
         <div class="n-slot" data-n-slot aria-hidden="true"></div>
@@ -758,13 +771,13 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <!-- Results view -->
         <div id="view-results" hidden>
           <div class="results__head">
-            <h3 tabindex="-1" id="results-title">Le tirage est fait.</h3>
-            <p>Envoie à chacun son lien en message privé&nbsp;: en l’ouvrant, il découvre qui il gâte. N’ouvre pas les liens des autres, le secret repose sur toi.</p>
+            <h3 tabindex="-1" id="results-title">Le tirage est en ligne.</h3>
+            <p>Envoie à toute l’équipe le lien du site&nbsp;: chacun clique sur «&nbsp;Piocher&nbsp;», choisit son prénom et découvre son nom. Ici, tu vois seulement qui a déjà pioché.</p>
           </div>
-          <p class="warn" id="warn-local" hidden>Le site est ouvert depuis ton ordinateur : ces liens ne marcheront que sur cet appareil. Publie le dossier en ligne (Netlify Drop, GitHub Pages…), puis renseigne son adresse via « Modifier ».</p>
           <ol class="links" id="links"></ol>
+          <button class="linkish" type="button" id="refresh">Actualiser</button>
           <div class="results__actions">
-            <button class="btn btn--orange" type="button" id="copy-all">Copier tous les liens</button>
+            <button class="btn btn--orange" type="button" id="copy-all">Copier le lien du site</button>
             <button class="btn btn--glass liquid-glass" type="button" id="edit">Modifier</button>
             <button class="btn btn--quiet" type="button" id="redraw">Refaire le tirage</button>
           </div>
@@ -776,13 +789,13 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <p class="label" data-reveal>02 — Ton cadeau</p>
         <h2 class="h2" data-split>Deux étapes, <span class="accent">un secret</span>.</h2>
         <ol class="steps steps--compact">
-          <li class="step" data-reveal style="--d:.1s"><span class="step__badge" aria-hidden="true">1</span><div><h3>Attends ton lien</h3><p>L’organisateur t’envoie un lien personnel en message privé. Rien à remplir, rien à retenir.</p></div></li>
-          <li class="step" data-reveal style="--d:.2s"><span class="step__badge" aria-hidden="true">2</span><div><h3>Ouvre ton cadeau</h3><p>Ouvre ton lien, maintiens le cadeau et découvre qui tu vas gâter. Ensuite, chut&nbsp;: garde-le pour toi.</p></div></li>
+          <li class="step" data-reveal style="--d:.1s"><span class="step__badge" aria-hidden="true">1</span><div><h3>Choisis ton prénom</h3><p>Clique sur «&nbsp;Piocher&nbsp;» et choisis ton prénom dans la liste. Une seule pioche par personne.</p></div></li>
+          <li class="step" data-reveal style="--d:.2s"><span class="step__badge" aria-hidden="true">2</span><div><h3>Pioche ton nom</h3><p>Maintiens le cadeau, les prénoms défilent… et découvre qui tu vas gâter. Ensuite, chut&nbsp;: garde-le pour toi.</p></div></li>
         </ol>
         <div class="tirage__ctas" data-reveal style="--d:.3s">
-          <a class="btn btn--orange" href="#demo" data-magnetic data-mine hidden>Revoir mon cadeau<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-          <a class="btn btn--orange" href="#demo" data-magnetic data-nomine>Ouvrir un cadeau test<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-          <button class="btn btn--glass liquid-glass" type="button" data-cal="outlook" data-magnetic><svg aria-hidden="true"><use href="#i-cal"/></svg>Ajouter à Outlook</button>
+          <a class="btn btn--orange" href="#piocher" data-magnetic data-mine hidden>Revoir mon tirage<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <a class="btn btn--orange" href="#piocher" data-magnetic data-nomine>Piocher mon nom<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <a class="btn btn--glass liquid-glass" href="#demo" data-magnetic>Ouvrir un cadeau test</a>
         </div>
       </div>
       <div class="n-slot n-slot--lg" data-n-slot aria-hidden="true"></div>
@@ -815,6 +828,14 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <p class="eyebrow liquid-glass"><img src="assets/neoptim-n.png" alt=""><span id="rv-eyebrow">Secret Santa 2026</span></p>
         <h1 class="rv-title" id="rv-title">Un cadeau t’attend sous le sapin.</h1>
         <p class="rv-sub" id="rv-sub" hidden></p>
+        <div class="picker" id="picker" hidden>
+          <ul class="picker__names" id="picker-names" aria-label="Les prénoms du tirage"></ul>
+          <div class="results__actions" id="picker-confirm" hidden>
+            <button class="btn btn--orange" type="button" id="pick-yes">Oui, c’est moi</button>
+            <button class="btn btn--quiet" type="button" id="pick-no">Non, revenir</button>
+          </div>
+          <p class="unlock__msg" id="picker-msg" role="status"></p>
+        </div>
         <div class="gift-wrap" id="seal-wrap">
           <button class="seal" id="seal" type="button" aria-describedby="seal-hint">
             <span class="seal__halo"></span>
@@ -891,7 +912,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   const defaults = { company: 'Neoptim', date: '2026-12-18', budget: '20', message: '', base: '', team: TEAM.slice(), sealed: null, view: 'form' };
   const load = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; } };
   const state = Object.assign({}, defaults, load());
-  delete state.people; delete state.draw; delete state.me; delete state.regs;
+  delete state.people; delete state.draw; delete state.me; delete state.regs; delete state.emails;
   if (!Array.isArray(state.team)) state.team = TEAM.slice();
   if (state.sealed && !Array.isArray(state.sealed.team)) state.sealed = null;
   const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {} };
@@ -909,18 +930,23 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   const unb64u = (str) => { let s = str.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return Uint8Array.from(atob(s), (c) => c.charCodeAt(0)); };
   const concat = (...parts) => { const out = new Uint8Array(parts.reduce((n, p) => n + p.length, 0)); let o = 0; for (const p of parts) { out.set(p, o); o += p.length; } return out; };
 
-  /* ---------- crypto: each gift is encrypted with its own key, which travels in its link (so the name never shows in clear) ---------- */
   const subtle = window.crypto && crypto.subtle;
-  async function boxFor(target) {
-    const raw = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
-    const key = await subtle.importKey('raw', raw, 'AES-GCM', false, ['encrypt']);
-    const ct = new Uint8Array(await subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(target)));
-    return { box: b64u(concat(iv, ct)), k: b64u(raw) };
+
+  /* ---------- the online draw: Supabase keeps it and checks each person's e-mail code ---------- */
+  const SUPA_URL = 'https://jujgjvlstqlfjrcarmfs.supabase.co', SUPA_KEY = 'sb_publishable_-K59xuLbybrz3u-5Pd277w_xL8lxiFV';
+  async function supa(path, body, token) {
+    if (!SUPA_URL) throw Object.assign(new Error('offline'), { status: 0 });
+    const headers = { 'Content-Type': 'application/json', apikey: SUPA_KEY };
+    if (token) headers.Authorization = `Bearer ${token}`;
+    else if (SUPA_KEY.startsWith('eyJ')) headers.Authorization = `Bearer ${SUPA_KEY}`; // legacy anon keys go in both headers
+    const res = await fetch(SUPA_URL + path, { method: 'POST', headers, body: JSON.stringify(body || {}) });
+    const text = await res.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch {}
+    if (!res.ok) throw Object.assign(new Error((data && (data.message || data.msg || data.error_description || data.error)) || res.statusText), { status: res.status });
+    return data;
   }
-  async function openBox({ box, k }) {
-    const b = unb64u(box), key = await subtle.importKey('raw', unb64u(k), 'AES-GCM', false, ['decrypt']);
-    return dec.decode(await subtle.decrypt({ name: 'AES-GCM', iv: b.subarray(0, 12) }, key, b.subarray(12)));
-  }
+  const rpc = (fn, args, token) => supa(`/rest/v1/rpc/${fn}`, args, token);
 
   /* ---------- draw: a random assignment where nobody draws themselves ---------- */
   function randInt(max) {
@@ -968,23 +994,12 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   const sameTeam = (a, b) => a.length === b.length && a.every((n, i) => n === b[i]);
   const drawIsValid = () => !!(state.sealed && sameTeam(state.sealed.team, state.team));
 
-  /* ---------- links: readable meta (who, when, budget) + the sealed box ---------- */
+  /* ---------- the address everyone receives ---------- */
   const isLocal = location.protocol === 'file:';
   function baseUrl() {
     const typed = (state.base || '').trim().split('#')[0];
     if (typed) return /^https?:\/\//i.test(typed) ? typed : `https://${typed}`;
     return location.href.split('#')[0];
-  }
-  function buildLinks() {
-    const base = baseUrl();
-    return state.sealed.items.map(({ n, box, k }) => {
-      const meta = b64u(enc.encode(JSON.stringify({ n, c: state.company.trim(), d: state.date, b: state.budget.trim(), m: state.message.trim() })));
-      return { name: n, url: `${base}#g=${meta}.${box}.${k}` };
-    });
-  }
-  function readLink(token) {
-    const [meta, box, k] = token.split('.');
-    try { const data = JSON.parse(dec.decode(unb64u(meta))); return data && data.n && box && k ? { ...data, box, k } : null; } catch { return null; }
   }
 
   /* ---------- bindings ---------- */
@@ -1177,7 +1192,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   $('#form').addEventListener('submit', (e) => {
     e.preventDefault();
     if (people().length < 3) return;
-    if (drawIsValid() && !confirm('Refaire le tirage crée de nouveaux liens pour tout le monde. Ceux déjà envoyés montreraient encore l’ancien tirage : il faudra renvoyer les nouveaux à chacun. Continuer ?')) return;
+    if (drawIsValid() && !confirm('Refaire le tirage remplace celui qui est en ligne : ceux qui ont déjà pioché découvriront un autre nom. Continuer ?')) return;
     doDraw();
   });
 
@@ -1198,29 +1213,24 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     await wait(420 + items.length * 35);
   }
   async function doDraw() {
-    if (!subtle) { say('Ce navigateur ne permet pas de chiffrer les liens : ouvre le site en https.', true); return; }
+    if (!subtle) { say('Ce navigateur ne permet pas de lancer le tirage : ouvre le site en https.', true); return; }
     drawBtn.classList.add('is-busy'); drawBtn.textContent = 'Les lutins mélangent les noms…';
     say('');
+    const fail = (msg) => { drawBtn.classList.remove('is-busy'); renderChips(); renderFormState(); say(msg, true); };
     const list = people().slice();
     const settings = await orgaSettings();
-    const order = settings && drawOrder(list, settings.rules || []);
-    if (!order) {
-      drawBtn.classList.remove('is-busy'); renderChips(); renderFormState();
-      say(settings ? 'Tirage impossible avec ces participants : vérifie la liste, puis réessaie.' : 'Rouvre ton lien organisateur sur ce navigateur, puis relance le tirage.', true);
-      return;
-    }
-    let items;
+    if (!settings) return fail('Rouvre ton lien organisateur sur ce navigateur, puis relance le tirage.');
+    const order = drawOrder(list, settings.rules || []);
+    if (!order) return fail('Tirage impossible avec ces participants : vérifie la liste, puis réessaie.');
+    // The pairs only exist inside this call: they go straight to the online draw, and this browser keeps none of them.
+    const rows = list.map((n, i) => ({ name: n, gift: list[order[i]] }));
+    const meta = { c: state.company.trim(), d: state.date, b: state.budget.trim(), m: state.message.trim() };
     try {
-      [items] = await Promise.all([
-        Promise.all(list.map(async (n, i) => ({ n, ...(await boxFor(list[order[i]])) }))),
-        reduced ? null : shuffleChips(),
-      ]);
-    } catch {
-      drawBtn.classList.remove('is-busy'); renderChips(); renderFormState();
-      say('Le tirage n’a pas pu se faire. Réessaie.', true);
-      return;
+      await Promise.all([rpc('ss_publish', { p_key: localStorage.getItem(ORGA_KEY), p_rows: rows, p_meta: meta }), reduced ? null : shuffleChips()]);
+    } catch (e) {
+      return fail(e.status === 0 ? 'La pioche en ligne n’est pas encore branchée.' : 'Le tirage n’a pas pu être mis en ligne : vérifie ta connexion, puis réessaie.');
     }
-    state.sealed = { team: list, items };
+    state.sealed = { team: list, at: Date.now() };
     state.view = 'results'; save();
     drawBtn.classList.remove('is-busy');
     renderChips();
@@ -1234,7 +1244,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   seeLinks.addEventListener('click', () => { state.view = 'results'; save(); renderView(true); });
   $('#edit').addEventListener('click', () => { state.view = 'form'; save(); renderView(true); });
   $('#redraw').addEventListener('click', () => {
-    if (!confirm('Refaire le tirage crée de nouveaux liens pour tout le monde. Ceux déjà envoyés montreraient encore l’ancien tirage : il faudra renvoyer les nouveaux à chacun. Continuer ?')) return;
+    if (!confirm('Refaire le tirage remplace celui qui est en ligne : ceux qui ont déjà pioché découvriront un autre nom. Continuer ?')) return;
     state.view = 'form'; renderView(false); doDraw();
   });
 
@@ -1248,26 +1258,35 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       if (animate) { $('#results-title').focus({ preventScroll: true }); $('#tirage').scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' }); }
     } else { renderFormState(); }
   }
-  function renderLinks() {
-    $('#warn-local').hidden = !(isLocal && !state.base.trim());
+  // Who has drawn already (never whom they drew), straight from the online draw.
+  async function renderLinks() {
+    let rows = state.sealed.team.map((name) => ({ name, claimed: null }));
+    try { rows = await rpc('ss_state', { p_key: localStorage.getItem(ORGA_KEY) }); } catch {}
     linksList.textContent = '';
-    buildLinks().forEach((l, i) => {
+    rows.forEach((r, i) => {
       const li = document.createElement('li'); li.className = 'link-row'; li.style.setProperty('--i', i);
-      li.innerHTML = `<span class="link-row__idx">${pad(i + 1)}</span><span class="link-row__name"></span>
-        <button class="copy" type="button"><span class="ico"><svg class="doc" aria-hidden="true"><use href="#i-copy"/></svg><svg class="check" aria-hidden="true"><use href="#i-check"/></svg></span><span class="lbl">Copier le lien</span></button>`;
-      li.querySelector('.link-row__name').textContent = l.name;
-      const btn = li.querySelector('.copy');
-      btn.setAttribute('aria-label', `Copier le lien de ${l.name}`);
-      btn.addEventListener('click', () => copy(l.url, btn));
+      li.innerHTML = `<span class="link-row__idx">${pad(i + 1)}</span><span class="link-row__name"></span><span class="pick-state"></span>`;
+      li.querySelector('.link-row__name').textContent = r.name;
+      const st = li.querySelector('.pick-state');
+      st.textContent = r.claimed == null ? '' : r.claimed ? 'a pioché' : 'pas encore';
+      st.classList.toggle('is-done', !!r.claimed);
+      if (r.claimed) {
+        // For someone who lost their draw, or whose first name was clicked by someone else: they draw again and land on the same name.
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'linkish'; b.textContent = 'Rendre la pioche';
+        b.addEventListener('click', async () => {
+          if (!confirm(`Rendre la pioche à ${r.name} ? ${r.name} pourra repiocher, et retombera sur le même nom.`)) return;
+          try { await rpc('ss_reopen', { p_key: localStorage.getItem(ORGA_KEY), p_name: r.name }); } catch {}
+          renderLinks();
+        });
+        li.append(b);
+      }
       linksList.append(li);
     });
+    const done = rows.filter((r) => r.claimed).length;
+    $('#results-title').textContent = done ? `${plural(done, 'personne')} sur ${rows.length} ${done > 1 ? 'ont' : 'a'} pioché.` : 'Le tirage est en ligne.';
   }
-  $('#copy-all').addEventListener('click', (e) => {
-    const company = state.company.trim();
-    const text = [`Secret Santa${company ? ' ' + company : ''} : les liens personnels (à envoyer séparément, en privé)`, '']
-      .concat(buildLinks().map((l) => `${l.name} : ${l.url}`)).join('\n');
-    copy(text, e.currentTarget, 'Liens copiés');
-  });
+  $('#refresh').addEventListener('click', () => renderLinks());
+  $('#copy-all').addEventListener('click', (e) => copy(baseUrl(), e.currentTarget, 'Lien copié'));
 
   async function copy(text, btn, doneLabel) {
     let ok = false;
@@ -1503,7 +1522,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     }, 560);
   }
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href="#demo"], a[data-mine], #rv-back');
+    const a = e.target.closest('a[href="#demo"], a[href="#piocher"], #rv-back');
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
     wipeTo(a.getAttribute('href'), e.clientX || innerWidth / 2, e.clientY || innerHeight / 2);
@@ -1566,7 +1585,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   ring.style.strokeDasharray = RING; ring.style.strokeDashoffset = RING;
 
   let p = 0, holding = false, last = 0, raf = 0, opened = false, current = null;
-  const hintIdle = 'Maintiens le cadeau pour l’ouvrir';
+  let hintIdle = 'Maintiens le cadeau pour l’ouvrir', spin = null;
   function paint() {
     window.ssHold = p;
     ring.style.strokeDashoffset = RING * (1 - p);
@@ -1600,11 +1619,28 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     const r = seal.getBoundingClientRect();
     burst(r.left + r.width / 2, r.top + r.height * .38);
     grid.classList.add('is-open');
+    if (spin) spinTo(spin.final, spin.giver);
     dispatchEvent(new CustomEvent('ss:open'));
     hint.textContent = '';
     setTimeout(() => $('#rv-name').focus({ preventScroll: true }), 900);
   }
 
+  // The draw is decided beforehand: the names roll like a hat being shaken, then stop on the right one.
+  function spinTo(final, giver) {
+    const el = $('#rv-name'), pool = (drawNames.length ? drawNames : TEAM).filter((t) => t !== giver && t !== final);
+    if (reduced || pool.length < 2) { setName(final); return; }
+    el.textContent = ''; el.classList.add('is-spinning');
+    let delay = 55, last = '';
+    const tick = () => {
+      let next;
+      do { next = pool[(Math.random() * pool.length) | 0]; } while (next === last);
+      last = next; el.textContent = next;
+      delay *= 1.14;
+      if (delay < 330) setTimeout(tick, delay);
+      else setTimeout(() => { el.classList.remove('is-spinning'); el.classList.add('is-spun'); setName(final); Sound.jingle(); }, 380);
+    };
+    setTimeout(tick, 650);
+  }
   function setName(name) {
     const el = $('#rv-name');
     el.textContent = '';
@@ -1676,58 +1712,119 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
-  // The participant's own gift, remembered for this browser session so the home page can lead back to it.
+  // What this device drew, so its owner can see it again (it never leaves this browser).
   const MINE = 'secret-santa-mine';
+  const myDraw = () => { try { return JSON.parse(localStorage.getItem(MINE)) || null; } catch { return null; } };
   function renderMine() {
-    let mine = null;
-    try { mine = sessionStorage.getItem(MINE); } catch {}
-    document.querySelectorAll('[data-mine]').forEach((a) => { a.hidden = !mine; if (mine) a.setAttribute('href', mine); });
-    document.querySelectorAll('[data-nomine]').forEach((a) => { a.hidden = !!mine; });
+    const mine = !!myDraw();
+    document.querySelectorAll('[data-mine]').forEach((a) => { a.hidden = !mine; });
+    document.querySelectorAll('[data-nomine]').forEach((a) => { a.hidden = mine; });
   }
 
-  function showReveal(data, demo) {
+  const picker = $('#picker'), pickerNames = $('#picker-names'), pickerConfirm = $('#picker-confirm');
+  function revealFrame(mode) {
     document.body.classList.add('mode-reveal');
     $('#reveal').hidden = false;
-    $('#rv-back-lbl').textContent = demo ? 'Retour' : 'Découvrir le site'; $('#rv-demo').hidden = !demo; $('#rv-mark').hidden = demo;
-    $('#rv-replay').hidden = !demo;
-    current = null; calData = data;
-    $('#rv-name').textContent = '';
+    $('#rv-back-lbl').textContent = mode === 'demo' ? 'Retour' : 'Découvrir le site';
+    $('#rv-demo').hidden = mode !== 'demo'; $('#rv-mark').hidden = mode === 'demo';
+    $('#rv-replay').hidden = mode !== 'demo';
+    current = null; spin = null; calData = null;
+    const nameEl = $('#rv-name'); nameEl.textContent = ''; nameEl.classList.remove('is-spinning', 'is-spun');
     resetSeal();
-    const title = $('#rv-title'), sub = $('#rv-sub');
-    if (!data) {
-      $('#rv-eyebrow').textContent = 'Secret Santa';
-      title.textContent = 'Ce lien a perdu sa magie.';
-      sub.hidden = false; sub.textContent = 'Il est sans doute incomplet. Demande à l’organisateur de te le renvoyer en entier.';
-      giftWrap.hidden = true; hint.hidden = true;
-      document.title = 'Lien incomplet · Secret Santa';
-    } else {
-      const year = yearOf(data.d), company = (data.c || '').trim();
-      $('#rv-eyebrow').textContent = company ? `${company} · Secret Santa ${year}` : `Secret Santa ${year}`;
-      title.textContent = '';
-      if (data.n) {
-        const em = document.createElement('span'); em.className = 'accent'; em.textContent = `${data.n},`;
-        title.append(em, document.createElement('br'), 'un cadeau t’attend', document.createElement('br'), 'sous le sapin.');
-      } else title.textContent = 'Un cadeau t’attend sous le sapin.';
-      sub.hidden = true;
-      giftWrap.hidden = false; hint.hidden = false;
-      const facts = $('#rv-facts'); facts.textContent = '';
-      const d = parseDate(data.d);
-      const items = [d && `Échange le ${fmtLong.format(d)}`, data.b && `Budget ${budgetText(data.b)} maximum`].filter(Boolean);
-      items.forEach((t) => { const li = document.createElement('li'); li.className = 'liquid-glass'; li.textContent = t; facts.append(li); });
-      facts.hidden = !items.length;
-      const note = $('#rv-note');
-      if (data.m) { note.hidden = false; note.textContent = `«${NBSP}${data.m}${NBSP}»`; const cite = document.createElement('cite'); cite.textContent = 'Le mot de l’organisateur'; note.append(cite); }
-      else note.hidden = true;
-      if (demo) { setName(data.t); current = data; }
-      else openBox(data).then((name) => { if (calData !== data) return; setName(name); current = data; paint(); try { sessionStorage.setItem(MINE, location.hash); } catch {} }, () => { if (calData === data) showReveal(null, false); });
-      paint();
-      document.title = 'Un cadeau t’attend · Secret Santa';
+    picker.hidden = true; giftWrap.classList.remove('is-locked');
+    $('#rv-facts').hidden = true; $('#rv-note').hidden = true;
+  }
+  function headline(eyebrow, lines, sub) {
+    $('#rv-eyebrow').textContent = eyebrow;
+    const title = $('#rv-title'); title.textContent = '';
+    lines.forEach((l, i) => { if (i) title.append(document.createElement('br')); title.append(l); });
+    const s = $('#rv-sub'); s.hidden = !sub; s.textContent = sub || '';
+  }
+  const accent = (t) => Object.assign(document.createElement('span'), { className: 'accent', textContent: t });
+
+  // data: { n: giver, t: name to gift, c, d, b, m, again }
+  function showGift(data, mode) {
+    revealFrame(mode);
+    calData = data;
+    const year = yearOf(data.d), company = (data.c || '').trim();
+    const eyebrow = company ? `${company} · Secret Santa ${year}` : `Secret Santa ${year}`;
+    if (mode === 'demo') headline(eyebrow, ['Un cadeau t’attend', 'sous le sapin.']);
+    else if (data.again) headline(eyebrow, [accent(`${data.n},`), 'tu as déjà pioché.']);
+    else headline(eyebrow, [accent(`${data.n},`), 'à toi de piocher.']);
+    hintIdle = mode === 'pick' && !data.again ? 'Maintiens le cadeau pour piocher' : mode === 'pick' ? 'Maintiens le cadeau pour revoir ton nom' : 'Maintiens le cadeau pour l’ouvrir';
+    giftWrap.hidden = false; hint.hidden = false;
+    const facts = $('#rv-facts'); facts.textContent = '';
+    const d = parseDate(data.d);
+    const items = [d && `Échange le ${fmtLong.format(d)}`, data.b && `Budget ${budgetText(data.b)} maximum`].filter(Boolean);
+    items.forEach((t) => { const li = document.createElement('li'); li.className = 'liquid-glass'; li.textContent = t; facts.append(li); });
+    facts.hidden = !items.length;
+    const note = $('#rv-note');
+    if (data.m) { note.hidden = false; note.textContent = `«${NBSP}${data.m}${NBSP}»`; const cite = document.createElement('cite'); cite.textContent = 'Le mot de l’organisateur'; note.append(cite); }
+    else note.hidden = true;
+    if (data.again) setName(data.t); else spin = { final: data.t, giver: data.n };
+    current = data; paint();
+    document.title = 'Un cadeau t’attend · Secret Santa';
+    requestAnimationFrame(() => seal.focus({ preventScroll: true }));
+  }
+
+  /* ---------- the live draw: first name → confirmation → gift ---------- */
+  let pickName = '', drawNames = []; // the first names of the draw, also used by the spinning names
+  const pickSay = (msg, warn = true) => { const el = $('#picker-msg'); el.textContent = msg; el.classList.toggle('is-warn', warn); };
+  function showPick() {
+    revealFrame('pick');
+    // The gift waits, locked, under the list of first names.
+    giftWrap.hidden = false; giftWrap.classList.add('is-locked'); hint.hidden = false;
+    hintIdle = 'Ton cadeau t’attend sous le sapin'; paint();
+    document.title = 'Piocher · Secret Santa';
+    const eyebrow = `${state.company.trim() || 'Neoptim'} · Secret Santa ${yearOf(state.date)}`;
+    const mine = myDraw();
+    if (mine) { showGift({ ...mine, again: true }, 'pick'); return; }
+    if (!SUPA_URL) { headline(eyebrow, ['La pioche n’est', 'pas encore ouverte.'], 'Reviens quand l’organisateur aura lancé le tirage.'); return; }
+    headline(eyebrow, ['À toi', 'de piocher.'], 'Choisis ton prénom :');
+    listNames();
+  }
+  async function listNames() {
+    picker.hidden = false; pickerConfirm.hidden = true; pickerNames.hidden = false; pickSay('', false);
+    pickerNames.textContent = '';
+    let names = [];
+    try { names = await rpc('ss_names'); } catch { pickSay('Impossible de charger la liste. Vérifie ta connexion, puis recharge la page.'); return; }
+    if (location.hash !== '#piocher') return;
+    drawNames = names.map((r) => r.name);
+    if (!names.length) {
+      picker.hidden = true;
+      headline($('#rv-eyebrow').textContent, ['La pioche n’est', 'pas encore ouverte.'], 'Reviens quand l’organisateur aura lancé le tirage.');
+      return;
     }
-    requestAnimationFrame(() => {
-      if (!data) title.focus({ preventScroll: true });
-      else seal.focus({ preventScroll: true });
+    names.forEach((r) => {
+      const li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.textContent = r.name; b.disabled = r.claimed;
+      if (r.claimed) b.title = 'A déjà pioché';
+      b.addEventListener('click', () => confirmName(r.name));
+      li.append(b); pickerNames.append(li);
     });
   }
+  function confirmName(name) {
+    pickName = name;
+    headline($('#rv-eyebrow').textContent, ['Tu es bien', accent(`${name}${NBSP}?`)], 'Une seule pioche par personne : vérifie bien ton prénom.');
+    pickerNames.hidden = true; pickerConfirm.hidden = false; pickSay('', false);
+    requestAnimationFrame(() => $('#pick-yes').focus({ preventScroll: true }));
+  }
+  $('#pick-no').addEventListener('click', () => { headline($('#rv-eyebrow').textContent, ['À toi', 'de piocher.'], 'Choisis ton prénom :'); listNames(); });
+  $('#pick-yes').addEventListener('click', async (e) => {
+    const btn = e.currentTarget; btn.classList.add('is-busy'); btn.disabled = true;
+    try {
+      const r = await rpc('ss_pioche', { p_name: pickName });
+      const drawn = { n: pickName, t: r.gift, ...(r.meta || {}) };
+      try { localStorage.setItem(MINE, JSON.stringify(drawn)); } catch {}
+      if (location.hash === '#piocher') showGift(drawn, 'pick');
+      renderMine();
+    } catch (err) {
+      headline($('#rv-eyebrow').textContent, ['À toi', 'de piocher.'], 'Choisis ton prénom :');
+      await listNames();
+      pickSay(/deja/.test(err.message) ? `${pickName} a déjà pioché. Si ce n’est pas toi, préviens l’organisateur.` : 'La pioche n’a pas marché. Vérifie ta connexion, puis réessaie.');
+    }
+    btn.classList.remove('is-busy'); btn.disabled = false;
+  });
 
   function showOrganizer() {
     const wasReveal = document.body.classList.contains('mode-reveal');
@@ -1777,8 +1874,8 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   function route() {
     const h = location.hash;
     if (h.startsWith('#orga-')) { unlockOrganizer(h.slice(6)); return; }
-    if (h.startsWith('#g=')) showReveal(readLink(h.slice(3)), false);
-    else if (h === '#demo') showReveal(demoData(), true);
+    if (h === '#piocher') showPick();
+    else if (h === '#demo') showGift(demoData(), 'demo');
     else showOrganizer();
   }
 
