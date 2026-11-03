@@ -622,7 +622,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       <li data-public><a href="#tirage">Ton cadeau</a></li>
     </ul>
     <a class="btn btn--orange" href="#tirage" data-magnetic data-orga>Le tirage</a>
-    <button class="btn btn--orange" type="button" data-register data-magnetic data-public>Je m’inscris</button>
+    <a class="btn btn--orange" href="#demo" data-magnetic data-public>Cadeau test</a>
   </nav>
 </header>
 
@@ -635,12 +635,12 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <span class="line"><span class="w" style="--i:2">Un</span> <span class="w" style="--i:3">cadeau.</span></span>
         <span class="line"><span class="w" style="--i:4">Un</span> <em class="w accent ember-text" style="--i:5">secret.</em></span>
       </h1>
-      <p class="hero__sub" data-in style="--d:.95s" data-orga>Récupère le code d’inscription de chacun, lance le tirage, envoie les liens. Chaque lien est chiffré pour son destinataire : même toi, tu ne pourras ouvrir que le tien.</p>
-      <p class="hero__sub" data-in style="--d:.95s" data-public>Le Secret Santa de <span data-bind="company">Neoptim</span> commence ici. Inscris-toi avec un mot secret, puis ouvre le lien que tu recevras en privé pour découvrir qui tu vas gâter.</p>
+      <p class="hero__sub" data-in style="--d:.95s" data-orga>Toute l’équipe est déjà dans le chapeau : vérifie la liste, lance le tirage, puis envoie à chacun son lien.</p>
+      <p class="hero__sub" data-in style="--d:.95s" data-public>Le Secret Santa de <span data-bind="company">Neoptim</span> commence ici. Rien à remplir : tu recevras un lien personnel en privé pour découvrir qui tu vas gâter.</p>
       <div class="ctas" data-in style="--d:1.08s">
         <a class="btn btn--orange" href="#tirage" data-magnetic data-orga>Lancer le tirage<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-        <button class="btn btn--orange" type="button" data-register data-magnetic data-public>Je m’inscris<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
-        <a class="btn btn--glass liquid-glass" href="#demo" data-magnetic data-public>Ouvrir un cadeau test</a>
+        <a class="btn btn--orange" href="#demo" data-magnetic data-public>Ouvrir un cadeau test<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+        <button class="btn btn--glass liquid-glass" type="button" data-cal="outlook" data-magnetic data-public><svg aria-hidden="true"><use href="#i-cal"/></svg>Ajouter à Outlook</button>
         <a class="btn btn--glass liquid-glass" href="#demo" data-magnetic data-orga><svg aria-hidden="true" style="width:16px;height:16px;color:#ff9c55"><use href="#i-flake"/></svg>Ouvrir un cadeau test</a>
       </div>
     </div>
@@ -653,7 +653,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <span class="sr-only" id="cd-sr"></span>
       </li>
       <li>Budget <span data-bind="budget">20&nbsp;€</span></li>
-      <li>Tirage 100&nbsp;% anonyme</li>
+      <li>Aucune inscription</li>
       <li class="strip__cal"><button type="button" data-cal="outlook"><svg aria-hidden="true"><use href="#i-cal"/></svg>Ajouter à Outlook</button><button class="ics" type="button" data-cal="ics" aria-label="Télécharger l’événement (fichier .ics pour Outlook sur ordinateur, iPhone ou Google Agenda)">.ics</button></li>
     </ul>
   </section>
@@ -678,7 +678,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
             <circle pathLength="1" cx="33" cy="29.5" r="3.5"/>
             <path pathLength="1" d="M7 33h28a3.5 3.5 0 0 1 0 7H7a3.5 3.5 0 0 1 0-7z"/>
           </svg>
-          <div><span class="step__num">I</span><h3>Chacun s’inscrit</h3><p>Chaque collègue choisit un mot secret et envoie son code d’inscription à l’organisateur. Le mot secret, lui, ne quitte jamais son téléphone.</p></div>
+          <div><span class="step__num">I</span><h3>Rien à remplir</h3><p>Toute l’équipe est déjà dans le chapeau. Pas d’inscription, pas de mot de passe : il suffit d’attendre son lien.</p></div>
         </li>
         <li class="step" data-reveal style="--d:.15s">
           <svg class="step__icon" viewBox="0 0 48 48" aria-hidden="true">
@@ -692,7 +692,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
             <path pathLength="1" d="M9 22h30v18H9z"/><path pathLength="1" d="M7 16h34v6H7z"/><path pathLength="1" d="M24 16v24"/>
             <path pathLength="1" d="M24 16c-4-8-12-6-8-1 2 2 6 1 8 1 2 0 6 1 8-1 4-5-4-7-8 1"/>
           </svg>
-          <div><span class="step__num">III</span><h3>Chacun ouvre son cadeau</h3><p>Chaque lien est chiffré pour son destinataire. Sans son mot secret, personne ne peut l’ouvrir, organisateur compris.</p></div>
+          <div><span class="step__num">III</span><h3>Chacun ouvre son cadeau</h3><p>Chacun reçoit son propre lien, en privé. Personne ne voit le tirage des autres.</p></div>
         </li>
       </ol>
     </div></div>
@@ -703,13 +703,13 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       <div class="tirage__intro">
         <p class="label" data-reveal>02 — Le tirage</p>
         <h2 class="h2" id="tirage-title" data-split>Prépare le <span class="accent">tirage</span>.</h2>
-        <p class="lede" data-reveal style="--d:.16s">Colle les codes d’inscription reçus, puis lance le tirage. Tout se passe dans ton navigateur.</p>
+        <p class="lede" data-reveal style="--d:.16s">Vérifie la liste, puis lance le tirage. Tout se passe dans ton navigateur.</p>
         <ul class="facts" data-reveal style="--d:.24s">
-          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Les noms tirés ne sont jamais affichés ni enregistrés en clair.</li>
-          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Chaque lien est chiffré : il ne s’ouvre qu’avec le mot secret de son destinataire.</li>
+          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Toute l’équipe est déjà inscrite : retire les absents, ajoute un prénom si besoin.</li>
+          <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Les noms tirés ne s’affichent jamais ici : chacun découvre le sien en ouvrant son lien.</li>
           <li><svg aria-hidden="true"><use href="#i-spark"/></svg>Date, budget et message restent modifiables : il suffit alors de renvoyer les liens.</li>
         </ul>
-        <div class="orga-links"><button class="linkish linkish--left" type="button" data-register>M’inscrire moi aussi</button><button class="linkish linkish--left" type="button" id="orga-exit">Voir la page comme un collègue</button></div>
+        <div class="orga-links"><button class="linkish linkish--left" type="button" id="orga-exit">Voir la page comme un collègue</button></div>
         <div class="n-slot" data-n-slot aria-hidden="true"></div>
       </div>
 
@@ -739,9 +739,9 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
               <p class="hint">Les liens pointeront vers cette adresse. Sans elle, ils ne fonctionnent que sur cet ordinateur.</p>
             </div>
             <div class="field field--full">
-              <span class="field__label"><label for="f-codes">Codes d’inscription reçus</label><span class="count" id="count" aria-live="polite">0 inscrit</span></span>
-              <textarea class="input codes" id="f-codes" rows="2" spellcheck="false" placeholder="Colle ici un ou plusieurs codes NEO1-…"></textarea>
+              <span class="field__label"><label for="f-add">Participants</label><span class="count" id="count" aria-live="polite">0 participant</span></span>
               <ul class="chips" id="chips"></ul>
+              <div class="adder"><input class="input" id="f-add" list="team-list" autocomplete="off" maxlength="40" placeholder="Ajouter un prénom"><button class="btn" type="button" id="f-add-go">Ajouter</button></div>
               <p class="hint" id="pending"></p>
             </div>
             <div class="form__foot">
@@ -756,7 +756,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <div id="view-results" hidden>
           <div class="results__head">
             <h3 tabindex="-1" id="results-title">Le tirage est fait.</h3>
-            <p>Envoie à chacun son lien en message privé. Il ne s’ouvre qu’avec le mot secret de son destinataire : même toi, tu ne peux pas l’ouvrir.</p>
+            <p>Envoie à chacun son lien en message privé : en l’ouvrant, il découvre qui il gâte. N’ouvre pas les liens des autres, le secret repose sur toi.</p>
           </div>
           <p class="warn" id="warn-local" hidden>Le site est ouvert depuis ton ordinateur : ces liens ne marcheront que sur cet appareil. Publie le dossier en ligne (Netlify Drop, GitHub Pages…), puis renseigne son adresse via « Modifier ».</p>
           <ol class="links" id="links"></ol>
@@ -773,12 +773,12 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <p class="label" data-reveal>02 — Ton cadeau</p>
         <h2 class="h2" data-split>Deux étapes, <span class="accent">un secret</span>.</h2>
         <ol class="steps steps--compact">
-          <li class="step" data-reveal style="--d:.1s"><span class="step__badge" aria-hidden="true">1</span><div><h3>Inscris-toi</h3><p>Choisis un mot secret et envoie le code obtenu à l’organisateur, en message privé. Ton mot secret, lui, ne quitte jamais ton téléphone.</p></div></li>
-          <li class="step" data-reveal style="--d:.2s"><span class="step__badge" aria-hidden="true">2</span><div><h3>Ouvre ton cadeau</h3><p>Tu recevras un lien personnel. Tape ton mot secret et déballe ton cadeau. Personne d’autre, organisateur compris, ne peut l’ouvrir.</p></div></li>
+          <li class="step" data-reveal style="--d:.1s"><span class="step__badge" aria-hidden="true">1</span><div><h3>Attends ton lien</h3><p>L’organisateur t’envoie un lien personnel en message privé. Rien à remplir, rien à retenir.</p></div></li>
+          <li class="step" data-reveal style="--d:.2s"><span class="step__badge" aria-hidden="true">2</span><div><h3>Ouvre ton cadeau</h3><p>Ouvre ton lien, maintiens le cadeau et découvre qui tu vas gâter. Ensuite, chut : garde-le pour toi.</p></div></li>
         </ol>
         <div class="tirage__ctas" data-reveal style="--d:.3s">
-          <button class="btn btn--orange" type="button" data-register data-magnetic>Je m’inscris<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
-          <a class="btn btn--glass liquid-glass" href="#demo" data-magnetic>Ouvrir un cadeau test</a>
+          <a class="btn btn--orange" href="#demo" data-magnetic>Ouvrir un cadeau test<span class="arrow"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <button class="btn btn--glass liquid-glass" type="button" data-cal="outlook" data-magnetic><svg aria-hidden="true"><use href="#i-cal"/></svg>Ajouter à Outlook</button>
         </div>
       </div>
       <div class="n-slot n-slot--lg" data-n-slot aria-hidden="true"></div>
@@ -797,28 +797,6 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   </footer>
 </main>
 
-<dialog class="dlg" id="register" aria-labelledby="reg-title">
-  <form method="dialog"><button class="dlg__x" aria-label="Fermer"><svg aria-hidden="true"><use href="#i-x"/></svg></button></form>
-  <div id="reg-step1">
-    <p class="label">Inscription</p>
-    <h2 class="dlg__title" id="reg-title">Choisis ton <span class="accent">mot secret</span>.</h2>
-    <p class="dlg__lede">Il servira à ouvrir ton cadeau. Personne ne le connaîtra, pas même l’organisateur : retiens-le bien. Une petite phrase marche très bien.</p>
-    <form class="form" id="reg-form" novalidate>
-      <div class="field field--full"><label for="r-name">Ton prénom</label><input class="input" id="r-name" list="team-list" autocomplete="given-name" maxlength="40" required></div>
-      <div class="field field--full"><label for="r-secret">Ton mot secret <span class="opt">8 caractères minimum</span></label><input class="input" id="r-secret" type="password" autocomplete="new-password" minlength="8" required></div>
-      <div class="field field--full"><label for="r-secret2">Confirme-le</label><input class="input" id="r-secret2" type="password" autocomplete="new-password" required></div>
-      <div class="form__foot"><button class="btn btn--orange btn--block" type="submit" id="reg-go">Créer mon code</button><p class="form-msg" id="reg-msg" role="status"></p></div>
-    </form>
-  </div>
-  <div id="reg-step2" hidden>
-    <p class="label">Presque fini</p>
-    <h2 class="dlg__title">Envoie ce code à <span class="accent">l’organisateur</span>.</h2>
-    <p class="dlg__lede">En message privé. Ce code ne contient pas ton mot secret : garde ce dernier pour toi, il te servira à ouvrir ton cadeau.</p>
-    <textarea class="input dlg__code" id="reg-code" readonly rows="5" aria-label="Ton code d’inscription"></textarea>
-    <p class="hint" id="reg-orga-note" hidden>Ton inscription est déjà ajoutée au tirage.</p>
-    <div class="results__actions"><button class="btn btn--orange" type="button" id="reg-copy">Copier mon code</button><button class="btn btn--quiet" type="button" id="reg-done">Terminé</button></div>
-  </div>
-</dialog>
 <datalist id="team-list"><option value="Amélie"><option value="Anthony"><option value="Manon"><option value="Maxence"><option value="Alexandre"><option value="Lea"><option value="Jimmy"><option value="Aurélien"><option value="Guillaume"><option value="Romain"><option value="Louise"><option value="Hugo"><option value="Antony"><option value="Valentin"><option value="Maud"><option value="Julian"></datalist>
 
 <section class="reveal" id="reveal" hidden aria-label="Ton Secret Santa">
@@ -833,14 +811,6 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
         <p class="eyebrow liquid-glass"><img src="assets/neoptim-n.png" alt=""><span id="rv-eyebrow">Secret Santa 2026</span></p>
         <h1 class="rv-title" id="rv-title">Un cadeau t’attend sous le sapin.</h1>
         <p class="rv-sub" id="rv-sub" hidden></p>
-        <form class="unlock" id="unlock" hidden novalidate>
-          <label class="sr-only" for="u-secret">Ton mot secret</label>
-          <div class="unlock__row liquid-glass">
-            <input class="unlock__input" id="u-secret" type="password" autocomplete="current-password" placeholder="Ton mot secret" required>
-            <button class="btn btn--orange" type="submit" id="u-go">Déverrouiller</button>
-          </div>
-          <p class="unlock__msg" id="u-msg" role="status"></p>
-        </form>
         <div class="gift-wrap" id="seal-wrap">
           <button class="seal" id="seal" type="button" aria-describedby="seal-hint">
             <span class="seal__halo"></span>
@@ -913,12 +883,13 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   const same = (a, b) => a.toLocaleLowerCase('fr') === b.toLocaleLowerCase('fr');
 
   /* ---------- state ---------- */
-  // regs: name -> sign-up code. sealed: the encrypted boxes of the current draw; the pairing itself is never stored.
-  const defaults = { company: 'Neoptim', date: '2026-12-18', budget: '20', message: '', base: '', regs: {}, sealed: null, view: 'form' };
+  // team: who is in the draw. sealed: the boxes of the current draw, each one opened by the key in its own link.
+  const defaults = { company: 'Neoptim', date: '2026-12-18', budget: '20', message: '', base: '', team: TEAM.slice(), sealed: null, view: 'form' };
   const load = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch { return {}; } };
   const state = Object.assign({}, defaults, load());
-  delete state.people; delete state.draw; delete state.me;
-  if (!state.regs || typeof state.regs !== 'object') state.regs = {};
+  delete state.people; delete state.draw; delete state.me; delete state.regs;
+  if (!Array.isArray(state.team)) state.team = TEAM.slice();
+  if (state.sealed && !Array.isArray(state.sealed.team)) state.sealed = null;
   const save = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {} };
 
   /* ---------- formatting ---------- */
@@ -934,55 +905,17 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   const unb64u = (str) => { let s = str.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return Uint8Array.from(atob(s), (c) => c.charCodeAt(0)); };
   const concat = (...parts) => { const out = new Uint8Array(parts.reduce((n, p) => n + p.length, 0)); let o = 0; for (const p of parts) { out.set(p, o); o += p.length; } return out; };
 
-  /* ---------- crypto: a secret word only its owner knows unlocks a private key; each gift is sealed with the matching public key ---------- */
+  /* ---------- crypto: each gift is encrypted with its own key, which travels in its link (so the name never shows in clear) ---------- */
   const subtle = window.crypto && crypto.subtle;
-  const EC = { name: 'ECDH', namedCurve: 'P-256' }, AES = { name: 'AES-GCM', length: 256 }, ITER = 310000;
-  async function secretKey(secret, salt) {
-    const base = await subtle.importKey('raw', enc.encode(secret.normalize('NFC')), 'PBKDF2', false, ['deriveKey']);
-    return subtle.deriveKey({ name: 'PBKDF2', salt, iterations: ITER, hash: 'SHA-256' }, base, AES, false, ['encrypt', 'decrypt']);
-  }
-  // Sign-up code: NEO1-<name length><name><public key 65><salt 16><iv 12><private key wrapped with the secret word>
-  async function makeCode(name, secret) {
-    const kp = await subtle.generateKey(EC, true, ['deriveKey']);
-    const pub = new Uint8Array(await subtle.exportKey('raw', kp.publicKey));
-    const pkcs8 = new Uint8Array(await subtle.exportKey('pkcs8', kp.privateKey));
-    const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
-    const wrapped = new Uint8Array(await subtle.encrypt({ name: 'AES-GCM', iv }, await secretKey(secret, salt), pkcs8));
-    const nb = enc.encode(name);
-    return 'NEO1-' + b64u(concat(Uint8Array.of(nb.length), nb, pub, salt, iv, wrapped));
-  }
-  function readCode(code) {
-    const m = /^NEO1-([A-Za-z0-9_-]+)$/.exec(code.trim());
-    if (!m) return null;
-    try {
-      const b = unb64u(m[1]), nl = b[0];
-      if (b.length < 1 + nl + 65 + 16 + 12 + 40 || b[1 + nl] !== 4) return null;
-      let o = 1 + nl;
-      const name = norm(dec.decode(b.subarray(1, o)));
-      const pub = b.slice(o, o += 65), salt = b.slice(o, o += 16), iv = b.slice(o, o += 12), wrapped = b.slice(o);
-      return name ? { name, pub, salt, iv, wrapped } : null;
-    } catch { return null; }
-  }
-  // One giver's box: <salt 16><iv 12><ephemeral public key 65><iv 12><wrapped length 2><wrapped key><encrypted name to gift>
-  async function sealFor(reg, target) {
-    const pub = await subtle.importKey('raw', reg.pub, EC, false, []);
-    const eph = await subtle.generateKey(EC, true, ['deriveKey']);
-    const key = await subtle.deriveKey({ name: 'ECDH', public: pub }, eph.privateKey, AES, false, ['encrypt']);
-    const iv = crypto.getRandomValues(new Uint8Array(12));
+  async function boxFor(target) {
+    const raw = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+    const key = await subtle.importKey('raw', raw, 'AES-GCM', false, ['encrypt']);
     const ct = new Uint8Array(await subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(target)));
-    const epub = new Uint8Array(await subtle.exportKey('raw', eph.publicKey));
-    return b64u(concat(reg.salt, reg.iv, epub, iv, Uint8Array.of(reg.wrapped.length >> 8, reg.wrapped.length & 255), reg.wrapped, ct));
+    return { box: b64u(concat(iv, ct)), k: b64u(raw) };
   }
-  async function unseal(box, secret) {
-    const b = unb64u(box);
-    let o = 0;
-    const salt = b.slice(o, o += 16), wiv = b.slice(o, o += 12), epub = b.slice(o, o += 65), iv = b.slice(o, o += 12);
-    const wl = (b[o] << 8) | b[o + 1]; o += 2;
-    const wrapped = b.slice(o, o += wl), ct = b.slice(o);
-    const pkcs8 = await subtle.decrypt({ name: 'AES-GCM', iv: wiv }, await secretKey(secret, salt), wrapped); // throws on a wrong secret word
-    const priv = await subtle.importKey('pkcs8', pkcs8, EC, false, ['deriveKey']);
-    const key = await subtle.deriveKey({ name: 'ECDH', public: await subtle.importKey('raw', epub, EC, false, []) }, priv, AES, false, ['decrypt']);
-    return dec.decode(await subtle.decrypt({ name: 'AES-GCM', iv }, key, ct));
+  async function openBox({ box, k }) {
+    const b = unb64u(box), key = await subtle.importKey('raw', unb64u(k), 'AES-GCM', false, ['decrypt']);
+    return dec.decode(await subtle.decrypt({ name: 'AES-GCM', iv: b.subarray(0, 12) }, key, b.subarray(12)));
   }
 
   /* ---------- draw: a random assignment where nobody draws themselves ---------- */
@@ -1027,10 +960,9 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     }
     return null;
   }
-  const people = () => Object.keys(state.regs);
-  const sameRegs = (a, b) => { const ka = Object.keys(a), kb = Object.keys(b); return ka.length === kb.length && ka.every((k) => a[k] === b[k]); };
-  const drawIsValid = () => !!(state.sealed && sameRegs(state.sealed.regs, state.regs));
-  const waiting = () => TEAM.filter((t) => !people().some((p) => same(p, t)));
+  const people = () => state.team;
+  const sameTeam = (a, b) => a.length === b.length && a.every((n, i) => n === b[i]);
+  const drawIsValid = () => !!(state.sealed && sameTeam(state.sealed.team, state.team));
 
   /* ---------- links: readable meta (who, when, budget) + the sealed box ---------- */
   const isLocal = location.protocol === 'file:';
@@ -1041,14 +973,14 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   }
   function buildLinks() {
     const base = baseUrl();
-    return state.sealed.items.map(({ n, box }) => {
+    return state.sealed.items.map(({ n, box, k }) => {
       const meta = b64u(enc.encode(JSON.stringify({ n, c: state.company.trim(), d: state.date, b: state.budget.trim(), m: state.message.trim() })));
-      return { name: n, url: `${base}#g=${meta}.${box}` };
+      return { name: n, url: `${base}#g=${meta}.${box}.${k}` };
     });
   }
   function readLink(token) {
-    const [meta, box] = token.split('.');
-    try { const data = JSON.parse(dec.decode(unb64u(meta))); return data && data.n && box ? { ...data, box } : null; } catch { return null; }
+    const [meta, box, k] = token.split('.');
+    try { const data = JSON.parse(dec.decode(unb64u(meta))); return data && data.n && box && k ? { ...data, box, k } : null; } catch { return null; }
   }
 
   /* ---------- bindings ---------- */
@@ -1176,7 +1108,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   })();
 
   /* ---------- organiser UI ---------- */
-  const f = { company: $('#f-company'), date: $('#f-date'), budget: $('#f-budget'), message: $('#f-message'), base: $('#f-base'), codes: $('#f-codes') };
+  const f = { company: $('#f-company'), date: $('#f-date'), budget: $('#f-budget'), message: $('#f-message'), base: $('#f-base'), add: $('#f-add') };
   const chips = $('#chips'), count = $('#count'), pendingEl = $('#pending'), drawBtn = $('#draw'), formMsg = $('#form-msg'), seeLinks = $('#see-links');
   const viewForm = $('#view-form'), viewResults = $('#view-results'), linksList = $('#links');
 
@@ -1190,39 +1122,25 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     });
   }
 
-  function addCodes(text) {
-    const found = text.match(/NEO1-[A-Za-z0-9_-]+/g) || [];
-    if (!found.length) { if (text.trim()) say('Ce texte ne contient aucun code d’inscription.', true); return false; }
-    const had = drawIsValid(), added = [], replaced = [];
-    let bad = 0;
-    for (const code of found) {
-      const r = readCode(code);
-      if (!r) { bad++; continue; }
-      const twin = people().find((p) => same(p, r.name));
-      if (twin && state.regs[twin] === code) continue;
-      if (twin) { delete state.regs[twin]; replaced.push(r.name); }
-      state.regs[r.name] = code; added.push(r.name);
+  function addPeople(text) {
+    const had = drawIsValid(), added = [];
+    for (const raw of text.split(/[,;\n]/)) {
+      const typed = norm(raw).slice(0, 40), name = TEAM.find((t) => same(t, typed)) || typed;
+      if (name && !people().some((p) => same(p, name))) { state.team.push(name); added.push(name); }
     }
-    const lost = afterRegsChange(had, added);
-    const parts = [];
-    if (added.length - replaced.length > 0) parts.push(`${plural(added.length - replaced.length, 'inscription')} ajoutée${added.length - replaced.length > 1 ? 's' : ''}`);
-    if (replaced.length) parts.push(`nouveau code pour ${replaced.join(', ')}`);
-    if (bad) parts.push(`${plural(bad, 'code')} illisible${bad > 1 ? 's' : ''}`);
-    if (lost) parts.push('relance le tirage pour créer de nouveaux liens');
-    if (parts.length) say(parts.join(' · ') + '.', !!(bad || replaced.length || lost));
+    if (added.length) afterTeamChange(had, added);
     return added.length > 0;
   }
-  function removeReg(n) {
+  function removePerson(n) {
     const had = drawIsValid();
-    delete state.regs[n];
-    if (afterRegsChange(had)) say('Les inscriptions ont changé : relance le tirage pour créer de nouveaux liens.', true);
+    state.team = state.team.filter((p) => p !== n);
+    afterTeamChange(had);
   }
-  function afterRegsChange(hadDraw, added = []) {
+  function afterTeamChange(hadDraw, added = []) {
     const lost = hadDraw && !drawIsValid();
     if (lost) state.sealed = null;
-    if (!lost) say('');
+    say(lost ? 'La liste a changé : relance le tirage pour créer de nouveaux liens.' : '', lost);
     save(); renderChips(added); renderFormState();
-    return lost;
   }
   function renderChips(added = []) {
     chips.textContent = '';
@@ -1230,14 +1148,14 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       const li = document.createElement('li'); li.className = added.includes(n) ? 'chip is-new' : 'chip';
       li.innerHTML = '<svg class="chip__ok" aria-hidden="true"><use href="#i-check"/></svg>';
       const span = document.createElement('span'); span.textContent = n;
-      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Retirer l’inscription de ${n}`);
+      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Retirer ${n} du tirage`);
       b.innerHTML = '<svg aria-hidden="true"><use href="#i-x"/></svg>';
-      b.addEventListener('click', () => removeReg(n));
+      b.addEventListener('click', () => removePerson(n));
       li.append(span, b); chips.append(li);
     });
-    count.textContent = plural(people().length, 'inscrit');
-    const w = waiting();
-    pendingEl.textContent = w.length ? `En attente de code : ${w.join(', ')}.` : 'Toute l’équipe est inscrite.';
+    count.textContent = plural(people().length, 'participant');
+    const out = TEAM.filter((t) => !people().some((p) => same(p, t)));
+    pendingEl.textContent = out.length ? `Hors tirage : ${out.join(', ')}. Tape un prénom pour le remettre.` : 'Retire un absent avec ✕, ou ajoute un prénom.';
   }
   function say(msg, warn = false) { formMsg.textContent = msg; formMsg.classList.toggle('is-warn', warn); }
   function renderFormState() {
@@ -1245,21 +1163,17 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     drawBtn.disabled = n < 3;
     drawBtn.textContent = valid ? 'Refaire le tirage' : 'Tirer au sort';
     seeLinks.hidden = !valid;
-    if (!formMsg.classList.contains('is-warn')) say(n < 3 ? `Il faut au moins 3 inscrits pour lancer le tirage (${n} pour l’instant).` : '');
+    if (!formMsg.classList.contains('is-warn')) say(n < 3 ? `Il faut au moins 3 participants pour lancer le tirage (${n} pour l’instant).` : '');
   }
 
-  let codeTimer = 0;
-  f.codes.addEventListener('input', () => {
-    clearTimeout(codeTimer);
-    codeTimer = setTimeout(() => { if (/NEO1-/.test(f.codes.value) && addCodes(f.codes.value)) f.codes.value = ''; }, 150);
-  });
+  const addFromInput = () => { if (addPeople(f.add.value)) f.add.value = ''; f.add.focus(); };
+  f.add.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); addFromInput(); } });
+  $('#f-add-go').addEventListener('click', addFromInput);
 
   $('#form').addEventListener('submit', (e) => {
     e.preventDefault();
     if (people().length < 3) return;
-    const w = waiting();
     if (drawIsValid() && !confirm('Refaire le tirage crée de nouveaux liens pour tout le monde. Ceux déjà envoyés montreraient encore l’ancien tirage : il faudra renvoyer les nouveaux à chacun. Continuer ?')) return;
-    if (!drawIsValid() && w.length && !confirm(`${plural(w.length, 'personne')} n’${w.length > 1 ? 'ont' : 'a'} pas encore envoyé de code (${w.join(', ')}). Lancer le tirage sans ${w.length > 1 ? 'elles' : 'elle'} ?`)) return;
     doDraw();
   });
 
@@ -1283,27 +1197,26 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     if (!subtle) { say('Ce navigateur ne permet pas de chiffrer les liens : ouvre le site en https.', true); return; }
     drawBtn.classList.add('is-busy'); drawBtn.textContent = 'Les lutins mélangent les noms…';
     say('');
-    const list = people(), regs = { ...state.regs };
+    const list = people().slice();
     const settings = await orgaSettings();
     const order = settings && drawOrder(list, settings.rules || []);
     if (!order) {
       drawBtn.classList.remove('is-busy'); renderChips(); renderFormState();
-      say(settings ? 'Tirage impossible avec ces inscrits : vérifie la liste, puis réessaie.' : 'Rouvre ton lien organisateur sur ce navigateur, puis relance le tirage.', true);
+      say(settings ? 'Tirage impossible avec ces participants : vérifie la liste, puis réessaie.' : 'Rouvre ton lien organisateur sur ce navigateur, puis relance le tirage.', true);
       return;
     }
     let items;
     try {
-      // The pairing only exists inside this call: each name is sealed for its giver, then forgotten.
       [items] = await Promise.all([
-        Promise.all(list.map(async (n, i) => ({ n, box: await sealFor(readCode(regs[n]), list[order[i]]) }))),
+        Promise.all(list.map(async (n, i) => ({ n, ...(await boxFor(list[order[i]])) }))),
         reduced ? null : shuffleChips(),
       ]);
     } catch {
       drawBtn.classList.remove('is-busy'); renderChips(); renderFormState();
-      say('Un code d’inscription est abîmé : demande à la personne de se réinscrire, puis recolle son code.', true);
+      say('Le tirage n’a pas pu se faire. Réessaie.', true);
       return;
     }
-    state.sealed = { regs, items };
+    state.sealed = { team: list, items };
     state.view = 'results'; save();
     drawBtn.classList.remove('is-busy');
     renderChips();
@@ -1366,43 +1279,6 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     clearTimeout(btn._t);
     btn._t = setTimeout(() => { btn.classList.remove('is-done'); lbl.textContent = prev; }, 1600);
   }
-
-  /* ---------- sign-up: the secret word never leaves this device ---------- */
-  const dlg = $('#register'), regForm = $('#reg-form'), regMsg = $('#reg-msg');
-  document.querySelectorAll('[data-register]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); openRegister(); }));
-  function openRegister() {
-    $('#reg-step1').hidden = false; $('#reg-step2').hidden = true;
-    regMsg.textContent = ''; regForm.reset();
-    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
-    setTimeout(() => $('#r-name').focus(), 60);
-  }
-  const regSay = (m) => { regMsg.textContent = m; regMsg.classList.add('is-warn'); };
-  let lastCode = '';
-  regForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = norm($('#r-name').value).slice(0, 40), s1 = $('#r-secret').value, s2 = $('#r-secret2').value;
-    if (!name) return regSay('Indique ton prénom.');
-    if (s1.length < 8) return regSay('Ton mot secret doit faire au moins 8 caractères.');
-    if (s1 !== s2) return regSay('Les deux mots secrets ne sont pas identiques.');
-    if (!subtle) return regSay('Ce navigateur ne permet pas de créer ton code : ouvre le site en https.');
-    const btn = $('#reg-go'); btn.classList.add('is-busy'); btn.textContent = 'Création de ton code…'; regMsg.textContent = '';
-    try {
-      const code = await makeCode(name, s1);
-      lastCode = code;
-      const ta = $('#reg-code'), t0 = performance.now();
-      if (reduced) ta.value = code;
-      else (function type(now) { const k = Math.min(1, (now - t0) / 850); ta.value = code.slice(0, Math.ceil(code.length * k)); if (k < 1 && lastCode === code) requestAnimationFrame(type); })(t0);
-      Sound.jingle();
-      $('#reg-step1').hidden = true; $('#reg-step2').hidden = false;
-      const inOrga = document.documentElement.classList.contains('is-orga');
-      $('#reg-orga-note').hidden = !inOrga;
-      if (inOrga) addCodes(code);
-      regForm.reset();
-    } catch { regSay('Impossible de créer ton code. Réessaie.'); }
-    btn.classList.remove('is-busy'); btn.textContent = 'Créer mon code';
-  });
-  $('#reg-copy').addEventListener('click', (e) => copy(lastCode, e.currentTarget, 'Code copié'));
-  $('#reg-done').addEventListener('click', () => dlg.close());
 
   /* ---------- scroll choreography: ribbons drift with scroll speed, headings lean, the hero comes apart ---------- */
   (() => {
@@ -1597,9 +1473,6 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       cur.classList.toggle('is-pill', !!pill);
       cur.classList.toggle('is-hover', !pill && !!e.target.closest('a,button,.seal'));
     });
-    // the sign-up dialog sits in the top layer, above the cursor: give the native one back meanwhile
-    const dlgEl = $('#register');
-    new MutationObserver(() => root.classList.toggle('has-cursor', !dlgEl.open)).observe(dlgEl, { attributes: true, attributeFilter: ['open'] });
     (function follow() {
       // over a button the ring wraps it like a pill; elsewhere it trails the pointer
       let tx = x, ty = y, tw = 38, th = 38;
@@ -1682,14 +1555,14 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     }, 250 + k * 380);
   }, { threshold: .45 }).observe($('#fin'));
 
-  /* ---------- the gift (unlock with the secret word, then hold to open) ---------- */
+  /* ---------- the gift: hold to open ---------- */
   const seal = $('#seal'), ring = $('#ring'), hint = $('#seal-hint'), grid = $('#rv-grid');
-  const giftWrap = $('#seal-wrap'), unlockForm = $('#unlock'), uMsg = $('#u-msg');
+  const giftWrap = $('#seal-wrap');
   const RING = 2 * Math.PI * 108, HOLD = 1400, REWIND = 320;
   ring.style.strokeDasharray = RING; ring.style.strokeDashoffset = RING;
 
-  let p = 0, holding = false, last = 0, raf = 0, opened = false, current = null, pendingBox = null;
-  const hintIdle = 'Maintiens le cadeau pour l’ouvrir', hintLocked = 'Tape ton mot secret pour déverrouiller ton cadeau';
+  let p = 0, holding = false, last = 0, raf = 0, opened = false, current = null;
+  const hintIdle = 'Maintiens le cadeau pour l’ouvrir';
   function paint() {
     window.ssHold = p;
     ring.style.strokeDashoffset = RING * (1 - p);
@@ -1698,7 +1571,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     seal.style.setProperty('--jx', `${((Math.random() - .5) * j).toFixed(2)}px`);
     seal.style.setProperty('--jy', `${((Math.random() - .5) * j * .6).toFixed(2)}px`);
     seal.style.setProperty('--jr', `${((Math.random() - .5) * j * .9).toFixed(2)}deg`);
-    hint.textContent = !current ? hintLocked : !holding || p < .3 ? hintIdle : p < .75 ? 'Ne lâche pas…' : 'Encore un peu…';
+    hint.textContent = !holding || p < .3 ? hintIdle : p < .75 ? 'Ne lâche pas…' : 'Encore un peu…';
   }
   function loop(now) {
     const dt = Math.min(now - last, 64); last = now;
@@ -1715,34 +1588,6 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   seal.addEventListener('keydown', (e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); press(); } });
   seal.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); release(); } });
   seal.addEventListener('click', (e) => e.preventDefault());
-
-  unlockForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const input = $('#u-secret'), secret = input.value;
-    if (!secret || !pendingBox) return;
-    const btn = $('#u-go'); btn.classList.add('is-busy'); btn.disabled = true;
-    uMsg.textContent = 'Vérification…'; uMsg.classList.remove('is-warn');
-    try {
-      if (!subtle) throw new Error('no crypto');
-      setName(await unseal(pendingBox.box, secret));
-      current = pendingBox; pendingBox = null;
-      input.value = ''; uMsg.textContent = '';
-      unlockForm.hidden = true; giftWrap.classList.remove('is-locked'); paint();
-      seal.focus({ preventScroll: true });
-      seal.classList.remove('is-flash'); void seal.offsetWidth; seal.classList.add('is-flash');
-      const sr = seal.getBoundingClientRect();
-      burst(sr.left + sr.width / 2, sr.top + sr.height / 2, { n: 70, conf: 0, flakes: .45, speed: .6 });
-      Sound.jingle();
-    } catch {
-      uMsg.textContent = subtle ? 'Ce n’est pas le bon mot secret.' : 'Ce navigateur ne peut pas ouvrir le cadeau : ouvre le lien en https.';
-      uMsg.classList.add('is-warn');
-      const sc = $('.gift__scene'); sc.classList.remove('is-denied'); void sc.offsetWidth; sc.classList.add('is-denied');
-      Sound.deny();
-      if (!reduced) $('.unlock__row').animate([{ transform: 'none' }, { transform: 'translateX(-8px)' }, { transform: 'translateX(7px)' }, { transform: 'translateX(-4px)' }, { transform: 'none' }], { duration: 380 });
-      input.select();
-    }
-    btn.classList.remove('is-busy'); btn.disabled = false;
-  });
 
   function open() {
     opened = true; holding = false;
@@ -1832,9 +1677,8 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     $('#reveal').hidden = false;
     $('#rv-back').hidden = !demo; $('#rv-demo').hidden = !demo; $('#rv-mark').hidden = demo;
     $('#rv-replay').hidden = !demo; $('#rv-bar').classList.toggle('is-solo', !demo);
-    current = null; pendingBox = null; calData = data;
+    current = null; calData = data;
     $('#rv-name').textContent = '';
-    unlockForm.hidden = true; uMsg.textContent = ''; $('#u-secret').value = ''; giftWrap.classList.remove('is-locked');
     resetSeal();
     const title = $('#rv-title'), sub = $('#rv-sub');
     if (!data) {
@@ -1862,21 +1706,20 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       if (data.m) { note.hidden = false; note.textContent = `«${NBSP}${data.m}${NBSP}»`; const cite = document.createElement('cite'); cite.textContent = 'Le mot de l’organisateur'; note.append(cite); }
       else note.hidden = true;
       if (demo) { setName(data.t); current = data; }
-      else { pendingBox = data; unlockForm.hidden = false; giftWrap.classList.add('is-locked'); }
+      else openBox(data).then((name) => { if (calData !== data) return; setName(name); current = data; paint(); }, () => { if (calData === data) showReveal(null, false); });
       paint();
       document.title = 'Un cadeau t’attend · Secret Santa';
     }
     requestAnimationFrame(() => {
       if (!data) title.focus({ preventScroll: true });
-      else if (demo) seal.focus({ preventScroll: true });
-      else if (finePointer) $('#u-secret').focus({ preventScroll: true });
+      else seal.focus({ preventScroll: true });
     });
   }
 
   function showOrganizer() {
     const wasReveal = document.body.classList.contains('mode-reveal');
     document.body.classList.remove('mode-reveal');
-    $('#reveal').hidden = true; current = null; pendingBox = null;
+    $('#reveal').hidden = true; current = null;
     document.title = 'Secret Santa · Neoptim';
     if (wasReveal && (location.hash === '#top' || !location.hash)) scrollTo(0, 0);
   }
