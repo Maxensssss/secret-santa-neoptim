@@ -11,7 +11,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js">
 <script>
   document.documentElement.classList.add('js');
   try { if (localStorage.getItem('secret-santa-orga') === '1') document.documentElement.classList.add('is-orga'); } catch (e) {}
@@ -333,10 +335,13 @@ h1,h2,h3,p{margin:0}
 .unlock .linkish{display:block;margin:6px auto 0}
 .picker{margin-top:26px;width:min(640px,100%);display:grid;justify-items:center;gap:14px}
 .picker__names{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0;padding:0;list-style:none}
+.picker__names li{animation:chip-in .55s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--i, 0) * 32ms)}
 .picker__names button{height:46px;padding:0 20px;border-radius:999px;border:1px solid hsl(var(--fg-hsl) / .16);background:hsl(var(--fg-hsl) / .07);color:var(--fg);
   font:500 15px var(--sans);cursor:pointer;transition-property:border-color,background-color,transform;transition-duration:.15s}
-.picker__names button:hover{border-color:rgba(255,156,85,.7);background:rgba(236,103,7,.14)}
+.picker__names button:hover{border-color:rgba(255,156,85,.7);background:rgba(236,103,7,.14);transform:translateY(-2px);box-shadow:0 8px 22px rgba(236,103,7,.18)}
 .picker__names button:active{transform:scale(.96)}
+.picker__names button[disabled]:hover{transform:none;box-shadow:none}
+.pick-ghost{position:fixed;z-index:60;display:grid;place-items:center;height:46px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,156,85,.7);background:rgba(236,103,7,.18);color:var(--fg);font:500 15px var(--sans);pointer-events:none;white-space:nowrap}
 .picker__names button[disabled]{cursor:default;opacity:.4;text-decoration:line-through;text-decoration-color:rgba(255,156,85,.7)}
 .picker .results__actions{margin-top:0}
 .pick-state{font-size:13px;color:var(--fg-60);white-space:nowrap}
@@ -347,7 +352,8 @@ h1,h2,h3,p{margin:0}
 .unlock__msg{margin-top:10px;min-height:20px;font-size:13.5px;color:var(--fg-60)}
 .unlock__msg.is-warn{color:#ffb27a}
 .gift-wrap.is-locked .seal{cursor:default}
-.gift-wrap.is-locked .gift__scene{filter:saturate(.5) brightness(.7);transition:filter .6s ease}
+.gift-wrap.is-locked .gift__scene{filter:saturate(.5) brightness(.7);transition:filter .6s ease;animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{50%{transform:translateY(-4px) scale(1.02)}}
 .gift-wrap.is-locked .seal__ring{opacity:.3}
 .gift__scene{transition:filter .6s ease}
 .dlg{width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border:1px solid hsl(var(--fg-hsl) / .14);border-radius:28px;padding:clamp(24px,4vw,36px);color:var(--fg);
@@ -579,7 +585,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   .gift__float,.is-open .gift__beam{animation:none}
   .is-open .gift__float{animation:none;opacity:0;transition:opacity .4s}
   .is-open .ch{animation:fade .6s ease both;animation-delay:.3s}
-  .chip,.link-row,.view-in{animation:none}
+  .chip,.link-row,.view-in,.picker__names li,.gift-wrap.is-locked .gift__scene{animation:none}
   .btn--orange::after{display:none}
   .h2,.noel{transform:none}
   .progress,.seal__orbit{display:none}
@@ -1635,6 +1641,9 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       let next;
       do { next = pool[(Math.random() * pool.length) | 0]; } while (next === last);
       last = next; el.textContent = next;
+      // each name drops in like a slot reel, with the hat's little click
+      el.animate([{ transform: 'translateY(.35em)', opacity: .15, filter: 'blur(6px)' }, { transform: 'none', opacity: .6, filter: 'blur(1.5px)' }], { duration: Math.min(delay, 240), easing: 'cubic-bezier(.2,.8,.2,1)' });
+      Sound.tick();
       delay *= 1.14;
       if (delay < 330) setTimeout(tick, delay);
       else setTimeout(() => { el.classList.remove('is-spinning'); el.classList.add('is-spun'); setName(final); Sound.jingle(); }, 380);
@@ -1739,6 +1748,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     const title = $('#rv-title'); title.textContent = '';
     lines.forEach((l, i) => { if (i) title.append(document.createElement('br')); title.append(l); });
     const s = $('#rv-sub'); s.hidden = !sub; s.textContent = sub || '';
+    if (!reduced) [title, s].forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(14px)', filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 520, delay: i * 60, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
   }
   const accent = (t) => Object.assign(document.createElement('span'), { className: 'accent', textContent: t });
 
@@ -1795,18 +1805,30 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
       headline($('#rv-eyebrow').textContent, ['La pioche n’est', 'pas encore ouverte.'], 'Reviens quand l’organisateur aura lancé le tirage.');
       return;
     }
-    names.forEach((r) => {
+    names.forEach((r, i) => {
       const li = document.createElement('li'), b = document.createElement('button');
+      li.style.setProperty('--i', i);
       b.type = 'button'; b.textContent = r.name; b.disabled = r.claimed;
       if (r.claimed) b.title = 'A déjà pioché';
-      b.addEventListener('click', () => confirmName(r.name));
+      b.addEventListener('click', () => confirmName(r.name, b));
       li.append(b); pickerNames.append(li);
     });
   }
-  function confirmName(name) {
+  function confirmName(name, btn) {
     pickName = name;
+    const from = btn && !reduced ? btn.getBoundingClientRect() : null;
     headline($('#rv-eyebrow').textContent, ['Tu es bien', accent(`${name}${NBSP}?`)], 'Une seule pioche par personne : vérifie bien ton prénom.');
     pickerNames.hidden = true; pickerConfirm.hidden = false; pickSay('', false);
+    if (from) {
+      // the chosen first name flies up into the question
+      const ghost = document.createElement('div'); ghost.className = 'pick-ghost'; ghost.textContent = name;
+      Object.assign(ghost.style, { left: `${from.left}px`, top: `${from.top}px`, minWidth: `${from.width}px` });
+      document.body.append(ghost);
+      const to = $('#rv-title').getBoundingClientRect();
+      const dx = to.left + to.width / 2 - (from.left + from.width / 2), dy = to.top + to.height * .72 - (from.top + from.height / 2);
+      ghost.animate([{ transform: 'none', opacity: 1 }, { transform: `translate(${dx}px,${dy}px) scale(2)`, opacity: 0, filter: 'blur(5px)' }], { duration: 560, easing: 'cubic-bezier(.16,1,.3,1)' }).onfinish = () => ghost.remove();
+      Sound.tick();
+    }
     requestAnimationFrame(() => $('#pick-yes').focus({ preventScroll: true }));
   }
   $('#pick-no').addEventListener('click', () => { headline($('#rv-eyebrow').textContent, ['À toi', 'de piocher.'], 'Choisis ton prénom :'); listNames(); });
@@ -2077,12 +2099,12 @@ function start() {
   const uniforms = {
     uTime: { value: 0 }, uMorph: { value: 0 }, uReveal: { value: 0 }, uExplode: { value: reduced ? 0 : 1.15 }, uSwirl: { value: reduced ? 0 : .55 },
     uSize: { value: small ? 5.6 : 5.2 }, uDpr: { value: renderer.getPixelRatio() }, uOpacity: { value: 1 },
-    uPointer: { value: new THREE.Vector3(99, 99, 0) }, uPointerAmt: { value: 0 }, uPoke: { value: 0 }, uPokePos: { value: new THREE.Vector3(99, 99, 0) },
+    uPointer: { value: new THREE.Vector3(99, 99, 0) }, uPointerAmt: { value: 0 }, uPoke: { value: 0 }, uDensity: { value: 1 }, uPokePos: { value: new THREE.Vector3(99, 99, 0) },
   };
   const mat = new THREE.ShaderMaterial({
     uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
     vertexShader: `
-      uniform float uTime, uMorph, uReveal, uExplode, uSwirl, uSize, uDpr, uOpacity, uPointerAmt, uPoke;
+      uniform float uTime, uMorph, uReveal, uExplode, uSwirl, uSize, uDpr, uOpacity, uPointerAmt, uPoke, uDensity;
       uniform vec3 uPointer, uPokePos;
       attribute vec3 aP1, aP2, aP3, aP4, aC0, aC1, aC2, aC3, aC4;
       attribute vec4 aRnd;
@@ -2114,6 +2136,7 @@ function start() {
         float tw = aRnd.w > .5 ? (.55 + .95 * pow(.5 + .5 * sin(uTime * 2.4 + aRnd.z * 40.), 3.)) : 1.;
         float chase = aRnd.w > .5 ? pow(.5 + .5 * sin(p.y * 2.6 - uTime * 3. + atan(p.z, p.x)), 12.) : 0.;
         gl_PointSize = uSize * (.55 + aRnd.y) * tw * (1. + chase * .8) * uDpr * (10. / -mv.z);
+        if (aRnd.z > uDensity) { gl_Position = vec4(2., 2., 2., 1.); gl_PointSize = 0.; }
         vColor = col * (aRnd.w > .5 ? .7 + tw * .5 : 1.) * (1. + chase * 1.6);
         vAlpha = uOpacity * (1. - clamp(uExplode, 0., 1.) * .4);
       }`,
@@ -2177,7 +2200,7 @@ function start() {
   // aurora curtains and the odd shooting star, drawn as a full-screen layer behind everything
   const skyU = { uTime: { value: 0 }, uStarT: { value: 0 }, uStorm: { value: 0 }, uAspect: { value: innerWidth / innerHeight }, uCam: { value: new THREE.Vector2() } };
   const sky = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
-    uniforms: skyU, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+    uniforms: skyU, depthWrite: false, depthTest: false, blending: THREE.NoBlending,
     vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, .999, 1.); }`,
     fragmentShader: `
       uniform float uTime, uStarT, uStorm, uAspect; uniform vec2 uCam; varying vec2 vUv;
@@ -2210,7 +2233,17 @@ function start() {
         gl_FragColor = vec4(col, 1.);
       }`,
   }));
-  sky.frustumCulled = false; sky.renderOrder = -1; scene.add(sky);
+  // The aurora is soft, so it is drawn at a fraction of the screen's resolution and stretched: the costliest shader, several times cheaper.
+  const SKY_SCALE = small ? .5 : .66;
+  const skyScene = new THREE.Scene(); sky.frustumCulled = false; skyScene.add(sky);
+  const skyCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const skyRT = new THREE.WebGLRenderTarget(2, 2, { depthBuffer: false, stencilBuffer: false });
+  const skyQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: { uMap: { value: skyRT.texture } }, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending,
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, .999, 1.); }`,
+    fragmentShader: `uniform sampler2D uMap; varying vec2 vUv; void main(){ gl_FragColor = vec4(texture2D(uMap, vUv).rgb, 1.); }`,
+  }));
+  skyQuad.frustumCulled = false; skyQuad.renderOrder = -1; scene.add(skyQuad);
 
   // where each shape sits for each section: [x, y, scale, opacity]
   const LAYOUT_WIDE = [[2.3, -.28, .84, 1], [2.3, -.05, .86, .95], [-2.5, -1.3, .56, 1], [0, .55, 1.1, .58]];
@@ -2219,6 +2252,7 @@ function start() {
   const revealLayout = [0, -.55, .5, .95], sealEl = document.getElementById('seal');
   function resize() {
     renderer.setSize(innerWidth, innerHeight, false);
+    skyRT.setSize(Math.ceil(innerWidth * renderer.getPixelRatio() * SKY_SCALE), Math.ceil(innerHeight * renderer.getPixelRatio() * SKY_SCALE));
     camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
     skyU.uAspect.value = camera.aspect;
     layout = camera.aspect < .9 ? LAYOUT_TALL : LAYOUT_WIDE;
@@ -2284,7 +2318,8 @@ function start() {
   let t = 0, morph = scrollShape(), rev = document.body.classList.contains('mode-reveal') ? 1 : 0, rotY = 0, rotZ = 0, camX = 0, camY = .3;
   const cur = [0, 0, 1, 1];
   const clock = new THREE.Clock();
-  let raf = 0, first = true;
+  let raf = 0, first = true, governed = reduced;
+  const samples = [];
 
   function frame() {
     raf = requestAnimationFrame(frame);
@@ -2329,8 +2364,21 @@ function start() {
     uniforms.uPoke.value = reduced ? 0 : poke * poke;
     uniforms.uTime.value = t; snowU.uTime.value = snowT; snowU.uBlizzard.value = blizzard;
     skyU.uTime.value = t; skyU.uStarT.value = starT; skyU.uStorm.value = blizzard; skyU.uCam.value.set(camX, camY - .3);
+    renderer.setRenderTarget(skyRT); renderer.render(skyScene, skyCam); renderer.setRenderTarget(null);
     renderer.render(scene, camera);
     if (first) { first = false; canvas.classList.add('is-ready'); }
+    // adaptive quality: a few seconds in, a device that cannot keep up gets fewer lights and a lighter canvas, once and for all
+    if (!governed && t > 2.5 && !document.documentElement.classList.contains('has-intro')) {
+      samples.push(dt);
+      if (samples.length >= 90) {
+        governed = true;
+        if (samples.reduce((a, b) => a + b, 0) / samples.length > 1 / 48) {
+          renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1)); resize();
+          uniforms.uDpr.value = snowU.uDpr.value = renderer.getPixelRatio();
+          uniforms.uDensity.value = .55;
+        }
+      }
+    }
   }
   frame();
   document.addEventListener('visibilitychange', () => {
