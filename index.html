@@ -1885,7 +1885,21 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
     if (ok) { try { localStorage.setItem('secret-santa-orga', '1'); localStorage.setItem(ORGA_KEY, key); } catch {} document.documentElement.classList.add('is-orga'); }
     history.replaceState(null, '', location.pathname + location.search + (ok ? '#tirage' : ''));
     route();
-    if (ok) $('#tirage').scrollIntoView({ block: 'start' });
+    if (ok) { $('#tirage').scrollIntoView({ block: 'start' }); syncDraw(); }
+  }
+  // A draw already online (made on another device) shows up here as the current one, so « Tirer au sort » never replaces it by surprise.
+  async function syncDraw() {
+    let k = null;
+    try { k = localStorage.getItem(ORGA_KEY); } catch {}
+    if (!k || drawIsValid()) return;
+    let rows;
+    try { rows = await rpc('ss_state', { p_key: k }); } catch { return; }
+    if (!rows || !rows.length) return;
+    const names = rows.map((r) => r.name);
+    if (names.length !== state.team.length || !names.every((n) => state.team.includes(n))) state.team = names;
+    state.sealed = { team: state.team.slice(), at: Date.now() };
+    state.view = 'results'; save();
+    renderChips(); renderView(false);
   }
   $('#orga-exit').addEventListener('click', () => {
     try { localStorage.removeItem('secret-santa-orga'); localStorage.removeItem(ORGA_KEY); } catch {}
@@ -1926,6 +1940,7 @@ textarea.input{height:auto;min-height:84px;padding:14px 16px;resize:vertical;lin
   bind(); renderChips(); renderView(false);
   addEventListener('hashchange', route);
   route();
+  if (document.documentElement.classList.contains('is-orga')) syncDraw();
   const go = () => requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('is-in')));
   function playIntro() {
     const el = $('#intro');
